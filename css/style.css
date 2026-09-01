@@ -328,3 +328,17 @@ code { font-family: var(--mono); font-size: 0.85em; color: var(--accent); }
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Hero name */
+.hero__name {
+  display: block;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
