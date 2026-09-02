@@ -103,6 +103,18 @@
     })();
   }
 
+  /* ---------- Hero heading color ---------- */
+  function initHeroHeading() {
+    var heading = document.querySelector(".hero h1 .grad");
+    if (!heading) return;
+    heading.style.background = "none";
+    heading.style.backgroundImage = "none";
+    heading.style.webkitBackgroundClip = "initial";
+    heading.style.backgroundClip = "initial";
+    heading.style.color = "#ffffff";
+    heading.style.webkitTextFillColor = "#ffffff";
+  }
+
   /* ---------- GitHub stats (client-side, graceful failure) ---------- */
   function initGitHub() {
     var link = document.getElementById("gh-link");
@@ -171,6 +183,7 @@
     initReveal();
     initScrollSpy();
     initTerminal();
+    initHeroHeading();
     initGitHub();
     initForm();
     initYear();
