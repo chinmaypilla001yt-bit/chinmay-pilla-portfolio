@@ -342,3 +342,11 @@ code { font-family: var(--mono); font-size: 0.85em; color: var(--accent); }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
+.university {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--text-secondary);
+}
