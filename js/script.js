@@ -123,7 +123,7 @@
     if (!link || !status || !stats) return;
 
     var user = (link.getAttribute("data-username") || "").trim();
-    if (!user || user === "YOUR_USERNAME") return; // keep the edit-me hint
+    if (!user || user === "YOUR_USERNAME") return;
 
     link.href = "https://github.com/" + user;
     status.textContent = "Loading public GitHub stats…";
@@ -134,9 +134,18 @@
         return res.json();
       })
       .then(function (data) {
-        document.getElementById("gh-repos").textContent = data.public_repos;
-        document.getElementById("gh-followers").textContent = data.followers;
-        document.getElementById("gh-since").textContent = new Date(data.created_at).getFullYear();
+        var repos = document.getElementById("gh-repos");
+        var followers = document.getElementById("gh-followers");
+        var since = document.getElementById("gh-since");
+
+        // Keep the GitHub section focused: hide repo/project count and join year.
+        if (repos && repos.parentElement) repos.parentElement.hidden = true;
+        if (since && since.parentElement) since.parentElement.hidden = true;
+        if (followers) followers.textContent = data.followers;
+
+        var heading = document.querySelector("#github h2");
+        if (heading) heading.textContent = "Code & experiments.";
+
         stats.hidden = false;
         status.hidden = true;
       })
