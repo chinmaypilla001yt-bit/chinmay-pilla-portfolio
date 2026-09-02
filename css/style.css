@@ -343,10 +343,25 @@ code { font-family: var(--mono); font-size: 0.85em; color: var(--accent); }
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
+
+   .hero__education {
+  margin-top: 0.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero__education .eyebrow {
+  margin-bottom: 0;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
 .university {
-  display: block;
   margin-top: 8px;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  color: var(--text-secondary);
+  color: #ffffff;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
 }
