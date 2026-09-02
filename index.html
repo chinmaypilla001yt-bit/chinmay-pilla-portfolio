@@ -12,86 +12,46 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' fill='%2338bdf8' text-anchor='middle'%3ECP%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
+<style>
+.projects-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:2.6rem; align-items:start; }
+.project-expand { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .35s var(--ease),border-color .3s,background .3s,box-shadow .3s; }
+.project-expand:hover { border-color:var(--border-strong); background:var(--surface-strong); transform:translateY(-4px); }
+.project-expand[open] { grid-column:1 / -1; background:var(--surface-strong); box-shadow:var(--shadow); transform:none; }
+.project-expand summary { list-style:none; cursor:pointer; padding:26px; min-height:235px; }
+.project-expand summary::-webkit-details-marker { display:none; }
+.project-expand summary::after { content:"Click to explore ↗"; display:block; margin-top:1.5rem; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; color:var(--text-secondary); text-transform:uppercase; }
+.project-expand summary:hover::after { color:var(--accent); }
+.project-summary__top { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:1rem; }
+.project-summary__top h3 { font-size:1.25rem; }
+.project-summary__arrow { font-size:1.2rem; color:var(--accent); transition:transform .3s var(--ease); }
+.project-expand[open] .project-summary__arrow { transform:rotate(90deg); }
+.project-expand summary .problem { font-size:.9rem; margin-top:1rem; }
+.project-expand summary .tech { margin-top:.8rem; font-family:var(--mono); font-size:.75rem; color:var(--accent); }
+.project-expand__details { display:grid; grid-template-columns:minmax(150px,.35fr) minmax(0,1fr); column-gap:32px; padding:0 30px 30px; border-top:1px solid var(--border); }
+.project-expand__details > *:not(.project-expand__label) { grid-column:2; }
+.project-expand__label { grid-column:1; grid-row:1 / span 6; padding-top:28px; font-family:var(--mono); font-size:.66rem; letter-spacing:.16em; color:var(--accent); text-transform:uppercase; }
+.project-expand__details h3 { padding-top:26px; font-size:1.6rem; }
+.project-expand__details p { margin-top:12px; }
+.project-expand__details .tech { font-family:var(--mono); font-size:.78rem; color:var(--accent); }
+.project-expand__details .btn-row { margin-top:1.2rem; }
+@media (max-width:1023px) { .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .project-expand[open] { grid-column:1 / -1; } }
+@media (max-width:640px) { .projects-grid { grid-template-columns:1fr; } .project-expand[open] { grid-column:auto; } .project-expand__details { grid-template-columns:1fr; } .project-expand__details > *:not(.project-expand__label) { grid-column:1; } .project-expand__label { grid-column:1; grid-row:auto; padding-top:22px; } .project-expand__details h3 { padding-top:8px; } }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="nav" id="nav">
-  <div class="container nav__inner">
-    <a class="nav__brand" href="#home">Chinmay Pilla</a>
-    <nav class="nav__links" id="nav-links" aria-label="Primary">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#hackathons">Hackathons</a><a href="#learning">Learning</a><a href="#contact">Contact</a>
-      <div class="nav__social">
-        <a href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/pilla-chinmay" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </nav>
-    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
-  </div>
-</header>
+<header class="nav" id="nav"><div class="container nav__inner"><a class="nav__brand" href="#home">Chinmay Pilla</a><nav class="nav__links" id="nav-links" aria-label="Primary"><a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#hackathons">Hackathons</a><a href="#learning">Learning</a><a href="#contact">Contact</a><div class="nav__social"><a href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/pilla-chinmay" target="_blank" rel="noopener">LinkedIn</a></div></nav><button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button></div></header>
 <main id="main">
-<section class="hero section" id="home">
-  <div class="container hero__grid">
-    <div class="hero__copy reveal">
-      <h2 class="hero__name">CHINMAY PILLA</h2>
-      <div class="hero__education">
-        <p class="university">B.Tech CSE · AI/ML &amp; Data Science · 1st Year</p>
-        <p class="university">NIAT × S-VYASA DEEMED TO BE UNIVERSITY</p>
-      </div>
-      <h1>Building my way into <span class="grad">software engineering</span>.</h1>
-      <p class="lead">Computer Science Engineering student focused on C++, problem solving, AI/ML, and building practical software through projects and hackathons.</p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="#projects">View Projects</a>
-        <a class="btn btn--ghost" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn btn--ghost" href="https://www.linkedin.com/in/pilla-chinmay" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn btn--text" href="#contact">Let's Connect →</a>
-      </div>
-    </div>
-    <div class="hero__visual reveal">
-      <div class="terminal" aria-hidden="true">
-        <div class="terminal__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><span class="terminal__title">main.cpp</span></div>
-        <pre class="terminal__body"><code id="typed"></code><span class="caret" id="caret"></span></pre>
-        <div class="terminal__foot">BUILD → LEARN → ITERATE</div>
-      </div>
-      <ul class="chipset"><li>C++</li><li>DSA</li><li>AI / ML</li><li>Data Science</li></ul>
-    </div>
-  </div>
-</section>
-<section class="section" id="about">
-  <div class="container">
-    <p class="eyebrow reveal">About</p>
-    <div class="about__grid about__grid--education">
-      <div class="reveal">
-        <h2>Early in the journey, serious about getting very good.</h2>
-        <p>I'm a first-year Computer Science Engineering student at NIAT × S-VYASA Deemed to Be University, specializing in AI/ML and Data Science.</p>
-        <p>Right now I'm building foundations in C++, problem solving and Data Structures &amp; Algorithms, while exploring artificial intelligence, machine learning and software development.</p>
-        <p>I learn best by building. Hackathons and personal projects are where I experiment with ideas, work under real constraints, and turn concepts into working products.</p>
-        <p>The goal is simple: become a strong software engineer by improving fundamentals consistently and building things that are actually useful.</p>
-      </div>
-      <div class="education reveal">
-        <div class="education__header">Education</div>
-        <article class="education__item">
-          <span class="education__level">B.Tech · Computer Science Engineering</span>
-          <h3>NIAT × S-VYASA Deemed to Be University</h3>
-          <p>Specialization: AI/ML &amp; Data Science · First Year</p>
-        </article>
-        <article class="education__item">
-          <span class="education__level">Class 12</span>
-          <h3>Vignan Vision Junior College</h3>
-          <p>Score: <strong>96.1%</strong></p>
-        </article>
-        <article class="education__item">
-          <span class="education__level">Class 10</span>
-          <h3>Nalanda Vidyaniketan</h3>
-          <p>Score: <strong>87.8%</strong></p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="hero section" id="home"><div class="container hero__grid"><div class="hero__copy reveal"><h2 class="hero__name">CHINMAY PILLA</h2><div class="hero__education"><p class="university">B.Tech CSE · AI/ML &amp; Data Science · 1st Year</p><p class="university">NIAT × S-VYASA DEEMED TO BE UNIVERSITY</p></div><h1>Building my way into <span class="grad">software engineering</span>.</h1><p class="lead">Computer Science Engineering student focused on C++, problem solving, AI/ML, and building practical software through projects and hackathons.</p><div class="btn-row"><a class="btn btn--primary" href="#projects">View Projects</a><a class="btn btn--ghost" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a><a class="btn btn--ghost" href="https://www.linkedin.com/in/pilla-chinmay" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn btn--text" href="#contact">Let's Connect →</a></div></div><div class="hero__visual reveal"><div class="terminal" aria-hidden="true"><div class="terminal__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><span class="terminal__title">main.cpp</span></div><pre class="terminal__body"><code id="typed"></code><span class="caret" id="caret"></span></pre><div class="terminal__foot">BUILD → LEARN → ITERATE</div></div><ul class="chipset"><li>C++</li><li>DSA</li><li>AI / ML</li><li>Data Science</li></ul></div></div></section>
+<section class="section" id="about"><div class="container"><p class="eyebrow reveal">About</p><div class="about__grid about__grid--education"><div class="reveal"><h2>Early in the journey, serious about getting very good.</h2><p>I'm a first-year Computer Science Engineering student at NIAT × S-VYASA Deemed to Be University, specializing in AI/ML and Data Science.</p><p>Right now I'm building foundations in C++, problem solving and Data Structures &amp; Algorithms, while exploring artificial intelligence, machine learning and software development.</p><p>I learn best by building. Hackathons and personal projects are where I experiment with ideas, work under real constraints, and turn concepts into working products.</p><p>The goal is simple: become a strong software engineer by improving fundamentals consistently and building things that are actually useful.</p></div><div class="education reveal"><div class="education__header">Education</div><article class="education__item"><span class="education__level">B.Tech · Computer Science Engineering</span><h3>NIAT × S-VYASA Deemed to Be University</h3><p>Specialization: AI/ML &amp; Data Science · First Year</p></article><article class="education__item"><span class="education__level">Class 12</span><h3>Vignan Vision Junior College</h3><p>Score: <strong>96.1%</strong></p></article><article class="education__item"><span class="education__level">Class 10</span><h3>Nalanda Vidyaniketan</h3><p>Score: <strong>87.8%</strong></p></article></div></div></div></section>
 <section class="section" id="skills"><div class="container"><p class="eyebrow reveal">Skills</p><h2 class="reveal">What I'm learning and using.</h2><p class="section-note reveal">These are current learning areas, not claims of professional expertise.</p><div class="grid grid--5"><article class="card reveal"><h3>Programming</h3><ul class="tags"><li>C++</li><li>JAVASCRIPT</li><li>HTML</li><li>CSS</li><li>PYTHON</li></ul></article><article class="card reveal"><h3>Computer Science</h3><ul class="tags"><li>Data Structures &amp; Algorithms</li><li>OOP</li><li>Problem Solving</li><li>Algorithms</li></ul></article><article class="card reveal"><h3>AI / Data</h3><ul class="tags"><li>Artificial Intelligence</li><li>Machine Learning</li><li>Data Science</li></ul></article><article class="card reveal"><h3>Development</h3><ul class="tags"><li>Git</li><li>GitHub</li><li>Responsive Web Dev</li><li>REST/API basics</li></ul></article><article class="card reveal"><h3>Soft Skills</h3><ul class="tags"><li>English Communication</li><li>Aptitude</li></ul></article></div></div></section>
-<section class="section" id="projects"><div class="container"><p class="eyebrow reveal">Projects</p><h2 class="reveal">Things I'm building.</h2><article class="featured card reveal"><div class="featured__media" role="img" aria-label="Placeholder visual for Share Campus app"><span class="featured__badge">PROJECT 01 · FEATURED</span><span class="featured__glyph">SC</span></div><div class="featured__body"><div class="card__top"><h3>Share Campus</h3><span class="status status--wip">In Progress</span></div><p>A campus-focused app for students to share resources, notes and updates within their college community.</p><p class="problem"><strong>Problem:</strong> PLACEHOLDER — describe the exact campus problem this solves.</p><p class="tech">Tech: Vibe Coded by using:- ChatGPT & Google AI Studio. </p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a><a class="btn btn--text btn--sm" href="#contact">Live Demo — not available yet</a></div></div></article><div class="grid grid--3"><article class="card project reveal"><div class="project__thumb" role="img" aria-label="Placeholder visual for AI Roadmap Creator"><span>AR</span></div><span class="project__num">PROJECT 02</span><div class="card__top"><h3>AI Roadmap Creator</h3><span class="status status--wip">In Progress</span></div><p>Generates a structured learning roadmap for a topic and suggests relevant YouTube videos for each step.</p><p class="problem"><strong>Problem:</strong> Learning resources are scattered; beginners don't know what order to study in.</p><p class="tech">Tech: PLACEHOLDER • PLACEHOLDER</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a></div></article><article class="card project reveal"><div class="project__thumb" role="img" aria-label="Placeholder visual for Codethics"><span>CE</span></div><span class="project__num">PROJECT 03</span><div class="card__top"><h3>Codethics</h3><span class="status status--wip">In Progress</span></div><p>PLACEHOLDER — one or two lines on what Codethics does and why you built it.</p><p class="problem"><strong>Problem:</strong> PLACEHOLDER</p><p class="tech">Tech: PLACEHOLDER • PLACEHOLDER</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a></div></article><article class="card project reveal">GitHub ↗</a></div></article></div></div></section>
+<section class="section" id="projects"><div class="container"><p class="eyebrow reveal">Projects</p><h2 class="reveal">Things I'm building.</h2><div class="projects-grid">
+<details class="project-expand reveal"><summary><div class="project-summary__top"><h3>Share Campus</h3><span class="project-summary__arrow">↗</span></div><p class="problem"><strong>Problem:</strong> Students need a focused place to share campus resources, notes and updates.</p><p class="tech">Tech: AI-assisted development · ChatGPT · Google AI Studio</p></summary><div class="project-expand__details"><span class="project-expand__label">PROJECT 01 · FEATURED</span><h3>Share Campus</h3><p>A campus-focused app for students to share resources, notes and updates within their college community.</p><p><strong>Problem:</strong> Students need a focused place to share useful campus resources, notes and updates with their college community.</p><p class="tech">Tech: AI-assisted development · ChatGPT · Google AI Studio</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a><a class="btn btn--text btn--sm" href="#contact">Live Demo — not available yet</a></div></div></details>
+<details class="project-expand reveal"><summary><div class="project-summary__top"><h3>AI Roadmap Creator</h3><span class="project-summary__arrow">↗</span></div><p class="problem"><strong>Problem:</strong> Learning resources are scattered, making it difficult for beginners to know what to study first.</p><p class="tech">Tech: AI-assisted web development</p></summary><div class="project-expand__details"><span class="project-expand__label">PROJECT 02</span><h3>AI Roadmap Creator</h3><p>Generates a structured learning roadmap for a topic and suggests relevant YouTube videos for each step.</p><p><strong>Problem:</strong> Learning resources are scattered; beginners often don't know what order to study in.</p><p class="tech">Tech: AI-assisted web development</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a></div></div></details>
+<details class="project-expand reveal"><summary><div class="project-summary__top"><h3>Codethics</h3><span class="project-summary__arrow">↗</span></div><p class="problem"><strong>Problem:</strong> Exploring how software can be designed thoughtfully while solving practical problems.</p><p class="tech">Tech: AI-assisted web development</p></summary><div class="project-expand__details"><span class="project-expand__label">PROJECT 03</span><h3>Codethics</h3><p>A project I'm developing to explore software ideas, product thinking and responsible technology.</p><p><strong>Problem:</strong> Exploring how software can be designed thoughtfully while solving practical problems.</p><p class="tech">Tech: AI-assisted web development</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a></div></div></details>
+</div></div></section>
 <section class="section" id="hackathons"><div class="container"><p class="eyebrow reveal">Hackathons</p><h2 class="reveal">Building under constraints.</h2><ol class="timeline"><li class="timeline__item reveal"><span class="timeline__year">2026</span><div class="card"><h3>The Hive Hackathon</h3><p class="muted">Sponsored by Emergent AI · Participant</p><p><strong>Project:</strong> PLACEHOLDER — project name</p><p><strong>Role:</strong> PLACEHOLDER — what you owned on the team</p><p><strong>Tech:</strong> PLACEHOLDER</p><p><strong>What I learned:</strong> PLACEHOLDER — one honest takeaway</p><div class="btn-row"><a class="btn btn--ghost btn--sm" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">GitHub ↗</a></div></div></li><li class="timeline__item reveal"><span class="timeline__year">Next</span><div class="card card--dashed"><h3>PLACEHOLDER — Upcoming hackathon</h3><p class="muted">Duplicate this block for each new event.</p></div></li></ol></div></section>
 <section class="section" id="learning"><div class="container"><p class="eyebrow reveal">Currently Learning</p><h2 class="reveal">The roadmap I'm on.</h2><div class="roadmap"><div class="road reveal"><span class="road__n">01</span><h3>C++</h3><p>Strengthening programming fundamentals.</p></div><div class="road reveal"><span class="road__n">02</span><h3>Data Structures &amp; Algorithms</h3><p>Building problem-solving ability and algorithmic thinking.</p></div><div class="road reveal"><span class="road__n">03</span><h3>AI / Machine Learning</h3><p>Learning the foundations of intelligent systems.</p></div><div class="road reveal"><span class="road__n">04</span><h3>Data Science</h3><p>Exploring data analysis, statistics and ML workflows.</p></div><div class="road reveal"><span class="road__n">05</span><h3>Software Development</h3><p>Learning how to turn ideas into reliable applications.</p></div></div></div></section>
 <section class="section" id="github"><div class="container gh"><div class="reveal"><p class="eyebrow">GitHub</p><h2>Code, experiments &amp; projects.</h2><p class="lead">Most of what I build ends up here — rough drafts included.</p><a class="btn btn--primary" id="gh-link" data-username="chinmaypilla001yt-bit" href="https://github.com/chinmaypilla001yt-bit" target="_blank" rel="noopener">Visit GitHub Profile ↗</a></div><div class="card gh__panel reveal" id="gh-panel" aria-live="polite"><p class="muted" id="gh-status">Loading public GitHub profile stats…</p><div class="gh__stats" id="gh-stats" hidden><div><span id="gh-repos">—</span><small>Public repos</small></div><div><span id="gh-followers">—</span><small>Followers</small></div><div><span id="gh-since">—</span><small>On GitHub since</small></div></div></div></div></section>
