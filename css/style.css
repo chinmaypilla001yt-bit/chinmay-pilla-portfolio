@@ -344,17 +344,6 @@ code { font-family: var(--mono); font-size: 0.85em; color: var(--accent); }
   -webkit-text-fill-color: transparent;
 
 
-   .hero__education {
-  margin-top: 0.2rem;
-  margin-bottom: 1.8rem;
-}
-
-.hero__education .eyebrow {
-  margin-bottom: 0;
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
 
 .university {
   margin-top: 8px;
@@ -362,6 +351,31 @@ code { font-family: var(--mono); font-size: 0.85em; color: var(--accent); }
   font-family: var(--mono);
   font-size: 0.82rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+/* Hero Education */
+.hero__education {
+  margin-top: 0.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero__education .eyebrow {
+  margin-bottom: 0;
+  color: #ffffff !important;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.hero__education .university {
+  margin-top: 6px;
+  color: #ffffff !important;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 800 !important;
   letter-spacing: 0.08em;
   line-height: 1.5;
 }
