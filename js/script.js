@@ -115,6 +115,34 @@
     heading.style.webkitTextFillColor = "#ffffff";
   }
 
+  /* ---------- Certifications ---------- */
+  function initCertifications() {
+    var main = document.getElementById("main");
+    var navLinks = document.getElementById("nav-links");
+    var hackathons = document.getElementById("hackathons");
+    if (!main || !navLinks || !hackathons || document.getElementById("certifications")) return;
+
+    var navLink = document.createElement("a");
+    navLink.href = "#certifications";
+    navLink.textContent = "Certifications";
+    navLinks.insertBefore(navLink, navLinks.querySelector(".nav__social"));
+
+    var section = document.createElement("section");
+    section.className = "section";
+    section.id = "certifications";
+    section.innerHTML =
+      '<div class="container">' +
+        '<p class="eyebrow reveal">Certifications</p>' +
+        '<h2 class="reveal">Learning, verified.</h2>' +
+        '<div class="card card--dashed reveal" style="margin-top:2.6rem; text-align:center; padding:3rem 2rem;">' +
+          '<h3>Certifications coming soon.</h3>' +
+          '<p class="muted" style="margin-top:.8rem;">I\'m currently working toward certifications in software development, AI/ML and related areas. This section will be updated as I earn them.</p>' +
+        '</div>' +
+      '</div>';
+
+    main.insertBefore(section, hackathons);
+  }
+
   /* ---------- GitHub stats (client-side, graceful failure) ---------- */
   function initGitHub() {
     var link = document.getElementById("gh-link");
@@ -123,7 +151,7 @@
     if (!link || !status || !stats) return;
 
     var user = (link.getAttribute("data-username") || "").trim();
-    if (!user || user === "YOUR_USERNAME") return;
+    if (!user || user === "YOUR_USERNAME") return; // keep the edit-me hint
 
     link.href = "https://github.com/" + user;
     status.textContent = "Loading public GitHub stats…";
@@ -134,18 +162,9 @@
         return res.json();
       })
       .then(function (data) {
-        var repos = document.getElementById("gh-repos");
-        var followers = document.getElementById("gh-followers");
-        var since = document.getElementById("gh-since");
-
-        // Keep the GitHub section focused: hide repo/project count and join year.
-        if (repos && repos.parentElement) repos.parentElement.hidden = true;
-        if (since && since.parentElement) since.parentElement.hidden = true;
-        if (followers) followers.textContent = data.followers;
-
-        var heading = document.querySelector("#github h2");
-        if (heading) heading.textContent = "Code & experiments.";
-
+        document.getElementById("gh-repos").textContent = data.public_repos;
+        document.getElementById("gh-followers").textContent = data.followers;
+        document.getElementById("gh-since").textContent = new Date(data.created_at).getFullYear();
         stats.hidden = false;
         status.hidden = true;
       })
@@ -193,6 +212,7 @@
     initScrollSpy();
     initTerminal();
     initHeroHeading();
+    initCertifications();
     initGitHub();
     initForm();
     initYear();
