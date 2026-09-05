@@ -151,7 +151,7 @@
     if (!link || !status || !stats) return;
 
     var user = (link.getAttribute("data-username") || "").trim();
-    if (!user || user === "YOUR_USERNAME") return; // keep the edit-me hint
+    if (!user || user === "YOUR_USERNAME") return;
 
     link.href = "https://github.com/" + user;
     status.textContent = "Loading public GitHub stats…";
@@ -194,7 +194,6 @@
 
       var subject = encodeURIComponent("Portfolio contact — " + name);
       var body = encodeURIComponent(message + "\n\n— " + name + " (" + email + ")");
-      // EDIT: change the address below if your email changes.
       window.location.href =
         "mailto:chinmaypilla001yt@gmail.com?subject=" + subject + "&body=" + body;
     });
@@ -208,11 +207,11 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
+    initCertifications();
     initReveal();
     initScrollSpy();
     initTerminal();
     initHeroHeading();
-    initCertifications();
     initGitHub();
     initForm();
     initYear();
