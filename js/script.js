@@ -9,9 +9,7 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function initNav() {
-    var toggle = document.getElementById("nav-toggle");
-    var links = document.getElementById("nav-links");
-    var nav = document.getElementById("nav");
+    var toggle = document.getElementById("nav-toggle"), links = document.getElementById("nav-links"), nav = document.getElementById("nav");
     if (!toggle || !links || !nav) return;
     function close() { links.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open menu"); }
     toggle.addEventListener("click", function () { var open = links.classList.toggle("is-open"); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu"); });
@@ -29,8 +27,7 @@
   }
 
   function initScrollSpy() {
-    var sections = document.querySelectorAll("main section[id]");
-    var links = document.querySelectorAll('#nav-links a[href^="#"]');
+    var sections = document.querySelectorAll("main section[id]"), links = document.querySelectorAll('#nav-links a[href^="#"]');
     if (!sections.length || !("IntersectionObserver" in window)) return;
     var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (!entry.isIntersecting) return; links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id); }); }); }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { io.observe(s); });
@@ -63,7 +60,7 @@
     cards.forEach(function (candidate) { var title = candidate.querySelector("h3"); if (title && title.textContent.toLowerCase().indexOf("hive") !== -1) card = candidate; });
     if (!card) return;
     var content = document.createElement("div"); content.className = "hive-card__content"; while (card.firstChild) content.appendChild(card.firstChild);
-    var certificateSrc = "assets/hive-certificate-final.jpg?v=4";
+    var certificateSrc = "assets/hive-certificate-final.jpg?v=5";
     var preview = document.createElement("button"); preview.type = "button"; preview.className = "hive-certificate-preview"; preview.setAttribute("aria-label", "Open Hive certificate");
     preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><span class="hive-certificate-preview__image"><img src="' + certificateSrc + '" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay"></span><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
     card.classList.add("hive-card"); card.appendChild(content); card.appendChild(preview);
