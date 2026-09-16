@@ -116,7 +116,7 @@
     content.className = "hive-card__content";
     while (card.firstChild) content.appendChild(card.firstChild);
 
-    var certificateSrc = "https://raw.githubusercontent.com/chinmaypilla001yt-bit/chinmay-pilla-portfolio/main/assets/hive-certificate-clean.jpg";
+    var certificateSrc = "assets/hive-certificate-final.jpg?v=1";
     var preview = document.createElement("button");
     preview.type = "button";
     preview.className = "hive-certificate-preview";
