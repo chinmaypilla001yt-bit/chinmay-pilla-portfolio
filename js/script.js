@@ -116,11 +116,12 @@
     content.className = "hive-card__content";
     while (card.firstChild) content.appendChild(card.firstChild);
 
+    var certificateSrc = "https://raw.githubusercontent.com/chinmaypilla001yt-bit/chinmay-pilla-portfolio/main/assets/hive-certificate-clean.jpg";
     var preview = document.createElement("button");
     preview.type = "button";
     preview.className = "hive-certificate-preview";
     preview.setAttribute("aria-label", "Open Hive certificate");
-    preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><span class="hive-certificate-preview__image" aria-hidden="true"></span><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
+    preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><span class="hive-certificate-preview__image"><img src="' + certificateSrc + '" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay"></span><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
     card.classList.add("hive-card");
     card.appendChild(content);
     card.appendChild(preview);
@@ -131,7 +132,8 @@
       '.hive-card__content{min-width:0}' +
       '.hive-certificate-preview{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);border-radius:16px;padding:12px;cursor:zoom-in;text-align:center;transition:transform .2s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;line-height:1}' +
       '.hive-certificate-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.05)}' +
-      '.hive-certificate-preview__image{display:block;width:100%;max-width:330px;aspect-ratio:960/679;background-image:url("assets/hive-certificate-clean.jpg");background-position:center;background-repeat:no-repeat;background-size:contain;border-radius:9px;flex:none}' +
+      '.hive-certificate-preview__image{display:block;width:100%;max-width:330px;border-radius:9px;overflow:hidden;flex:none}' +
+      '.hive-certificate-preview__image img{display:block;width:100%;height:auto;max-width:100%;border-radius:9px}' +
       '.hive-certificate-preview__label{font-size:.72rem;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9ca3af)}' +
       '.hive-certificate-preview__hint{font-size:.78rem;line-height:1.2;color:var(--muted,#9ca3af)}' +
       '.hive-certificate-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(3,4,7,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}' +
@@ -149,7 +151,7 @@
     modal.setAttribute("role", "dialog");
     modal.setAttribute("aria-modal", "true");
     modal.setAttribute("aria-label", "Hive Certificate of Achievement");
-    modal.innerHTML = '<button type="button" class="hive-certificate-modal__close" aria-label="Close certificate">×</button><img class="hive-certificate-modal__image" src="assets/hive-certificate-clean.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay">';
+    modal.innerHTML = '<button type="button" class="hive-certificate-modal__close" aria-label="Close certificate">×</button><img class="hive-certificate-modal__image" src="' + certificateSrc + '" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay">';
     document.body.appendChild(modal);
     var closeButton = modal.querySelector(".hive-certificate-modal__close");
     function openModal() { modal.hidden = false; document.body.style.overflow = "hidden"; closeButton.focus(); }
