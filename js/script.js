@@ -60,7 +60,7 @@
     cards.forEach(function (candidate) { var title = candidate.querySelector("h3"); if (title && title.textContent.toLowerCase().indexOf("hive") !== -1) card = candidate; });
     if (!card) return;
     var content = document.createElement("div"); content.className = "hive-card__content"; while (card.firstChild) content.appendChild(card.firstChild);
-    var certificateSrc = "assets/hive-certificate-final.jpg?v=5";
+    var certificateSrc = "assets/hive-certificate-final.jpg?v=6";
     var preview = document.createElement("button"); preview.type = "button"; preview.className = "hive-certificate-preview"; preview.setAttribute("aria-label", "Open Hive certificate");
     preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><span class="hive-certificate-preview__image"><img src="' + certificateSrc + '" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay"></span><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
     card.classList.add("hive-card"); card.appendChild(content); card.appendChild(preview);
