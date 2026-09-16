@@ -143,6 +143,86 @@
     main.insertBefore(section, hackathons);
   }
 
+  /* ---------- Hive certificate preview + lightbox ---------- */
+  function initHiveCertificate() {
+    var hackathons = document.getElementById("hackathons");
+    if (!hackathons || document.getElementById("hive-certificate-modal")) return;
+
+    var cards = hackathons.querySelectorAll(".card");
+    var card = null;
+    cards.forEach(function (candidate) {
+      var title = candidate.querySelector("h3");
+      if (title && title.textContent.toLowerCase().indexOf("hive") !== -1) card = candidate;
+    });
+    if (!card) return;
+
+    var content = document.createElement("div");
+    content.className = "hive-card__content";
+    while (card.firstChild) content.appendChild(card.firstChild);
+
+    var preview = document.createElement("button");
+    preview.type = "button";
+    preview.className = "hive-certificate-preview";
+    preview.setAttribute("aria-label", "Open Hive certificate");
+    preview.innerHTML =
+      '<span class="hive-certificate-preview__label">Certificate of Achievement</span>' +
+      '<img src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay" loading="lazy">' +
+      '<span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
+
+    card.classList.add("hive-card");
+    card.appendChild(content);
+    card.appendChild(preview);
+
+    var style = document.createElement("style");
+    style.textContent =
+      '.hive-card{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:2.5rem;align-items:center}' +
+      '.hive-card__content{min-width:0}' +
+      '.hive-certificate-preview{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);border-radius:16px;padding:12px;cursor:zoom-in;text-align:center;transition:transform .2s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}' +
+      '.hive-certificate-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.05)}' +
+      '.hive-certificate-preview img{display:block;width:100%;max-width:330px;height:auto;aspect-ratio:500/354;object-fit:cover;border-radius:9px}' +
+      '.hive-certificate-preview__label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9ca3af)}' +
+      '.hive-certificate-preview__hint{font-size:.78rem;color:var(--muted,#9ca3af)}' +
+      '.hive-certificate-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(3,4,7,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}' +
+      '.hive-certificate-modal[hidden]{display:none}' +
+      '.hive-certificate-modal__image{display:block;max-width:min(92vw,1100px);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.55)}' +
+      '.hive-certificate-modal__close{position:absolute;top:18px;right:22px;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:28px;line-height:1;cursor:pointer}' +
+      '.hive-certificate-modal__close:hover{background:rgba(255,255,255,.12)}' +
+      '@media (max-width:760px){.hive-card{grid-template-columns:1fr!important;gap:1.5rem}.hive-certificate-preview{max-width:430px;margin:0 auto}.hive-certificate-modal{padding:18px}.hive-certificate-modal__image{max-width:94vw;max-height:84vh}}';
+    document.head.appendChild(style);
+
+    var modal = document.createElement("div");
+    modal.id = "hive-certificate-modal";
+    modal.className = "hive-certificate-modal";
+    modal.hidden = true;
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "Hive Certificate of Achievement");
+    modal.innerHTML =
+      '<button type="button" class="hive-certificate-modal__close" aria-label="Close certificate">×</button>' +
+      '<img class="hive-certificate-modal__image" src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay">';
+    document.body.appendChild(modal);
+
+    var closeButton = modal.querySelector(".hive-certificate-modal__close");
+    function openModal() {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeButton.focus();
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    preview.addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) closeModal();
+    });
+  }
+
   /* ---------- GitHub stats (client-side, graceful failure) ---------- */
   function initGitHub() {
     var link = document.getElementById("gh-link");
@@ -208,6 +288,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initCertifications();
+    initHiveCertificate();
     initReveal();
     initScrollSpy();
     initTerminal();
