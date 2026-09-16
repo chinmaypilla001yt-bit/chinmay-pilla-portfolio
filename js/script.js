@@ -120,7 +120,7 @@
     preview.type = "button";
     preview.className = "hive-certificate-preview";
     preview.setAttribute("aria-label", "Open Hive certificate");
-    preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><img src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay"><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
+    preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><span class="hive-certificate-preview__image" aria-hidden="true"></span><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
     card.classList.add("hive-card");
     card.appendChild(content);
     card.appendChild(preview);
@@ -129,11 +129,11 @@
     style.textContent =
       '.hive-card{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:2.5rem;align-items:center}' +
       '.hive-card__content{min-width:0}' +
-      '.hive-certificate-preview{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);border-radius:16px;padding:12px;cursor:zoom-in;text-align:center;transition:transform .2s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}' +
+      '.hive-certificate-preview{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);border-radius:16px;padding:12px;cursor:zoom-in;text-align:center;transition:transform .2s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;line-height:1}' +
       '.hive-certificate-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.05)}' +
-      '.hive-certificate-preview img{display:block;width:100%;max-width:330px;height:auto!important;aspect-ratio:auto!important;object-fit:contain;border-radius:9px;background:transparent}' +
-      '.hive-certificate-preview__label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9ca3af)}' +
-      '.hive-certificate-preview__hint{font-size:.78rem;color:var(--muted,#9ca3af)}' +
+      '.hive-certificate-preview__image{display:block;width:100%;max-width:330px;aspect-ratio:960/679;background-image:url("assets/hive-certificate.jpg");background-position:center;background-repeat:no-repeat;background-size:contain;border-radius:9px;flex:none}' +
+      '.hive-certificate-preview__label{font-size:.72rem;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9ca3af)}' +
+      '.hive-certificate-preview__hint{font-size:.78rem;line-height:1.2;color:var(--muted,#9ca3af)}' +
       '.hive-certificate-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(3,4,7,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}' +
       '.hive-certificate-modal[hidden]{display:none}' +
       '.hive-certificate-modal__image{display:block;max-width:min(92vw,1100px);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.55)}' +
