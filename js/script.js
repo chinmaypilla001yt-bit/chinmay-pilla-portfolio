@@ -9,41 +9,28 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Mobile navigation ---------- */
   function initNav() {
     var toggle = document.getElementById("nav-toggle");
     var links = document.getElementById("nav-links");
     var nav = document.getElementById("nav");
     if (!toggle || !links || !nav) return;
-
     function close() {
       links.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
     }
-
     toggle.addEventListener("click", function () {
       var open = links.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
-
-    links.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") close();
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
-    });
-
-    var onScroll = function () {
-      nav.classList.toggle("is-stuck", window.scrollY > 12);
-    };
+    links.addEventListener("click", function (e) { if (e.target.tagName === "A") close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    var onScroll = function () { nav.classList.toggle("is-stuck", window.scrollY > 12); };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
 
-  /* ---------- Scroll reveal ---------- */
   function initReveal() {
     var items = document.querySelectorAll(".reveal");
     if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -53,48 +40,32 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry, i) {
         if (!entry.isIntersecting) return;
-        var el = entry.target;
-        el.style.transitionDelay = Math.min(i * 70, 280) + "ms";
-        el.classList.add("is-visible");
-        io.unobserve(el);
+        entry.target.style.transitionDelay = Math.min(i * 70, 280) + "ms";
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
     items.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Active nav link on scroll ---------- */
   function initScrollSpy() {
     var sections = document.querySelectorAll("main section[id]");
     var links = document.querySelectorAll('#nav-links a[href^="#"]');
     if (!sections.length || !("IntersectionObserver" in window)) return;
-
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        links.forEach(function (a) {
-          a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id);
-        });
+        links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id); });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { io.observe(s); });
   }
 
-  /* ---------- Terminal typing animation ---------- */
   function initTerminal() {
     var out = document.getElementById("typed");
     if (!out) return;
-
-    var code = [
-      "#include <iostream>",
-      "",
-      "int main() {",
-      '    std::cout << "Hello, World!";',
-      "    return 0;",
-      "}"
-    ].join("\n");
-
+    var code = ["#include <iostream>", "", "int main() {", '    std::cout << "Hello, World!";', "    return 0;", "}"].join("\n");
     if (reduceMotion) { out.textContent = code; return; }
-
     var i = 0;
     (function type() {
       out.textContent = code.slice(0, i);
@@ -103,7 +74,6 @@
     })();
   }
 
-  /* ---------- Hero heading color ---------- */
   function initHeroHeading() {
     var heading = document.querySelector(".hero h1 .grad");
     if (!heading) return;
@@ -115,39 +85,25 @@
     heading.style.webkitTextFillColor = "#ffffff";
   }
 
-  /* ---------- Certifications ---------- */
   function initCertifications() {
     var main = document.getElementById("main");
     var navLinks = document.getElementById("nav-links");
     var hackathons = document.getElementById("hackathons");
     if (!main || !navLinks || !hackathons || document.getElementById("certifications")) return;
-
     var navLink = document.createElement("a");
     navLink.href = "#certifications";
     navLink.textContent = "Certifications";
     navLinks.insertBefore(navLink, navLinks.querySelector(".nav__social"));
-
     var section = document.createElement("section");
     section.className = "section";
     section.id = "certifications";
-    section.innerHTML =
-      '<div class="container">' +
-        '<p class="eyebrow reveal">Certifications</p>' +
-        '<h2 class="reveal">Learning, verified.</h2>' +
-        '<div class="card card--dashed reveal" style="margin-top:2.6rem; text-align:center; padding:3rem 2rem;">' +
-          '<h3>Certifications coming soon.</h3>' +
-          '<p class="muted" style="margin-top:.8rem;">I\'m currently working toward certifications in software development, AI/ML and related areas. This section will be updated as I earn them.</p>' +
-        '</div>' +
-      '</div>';
-
+    section.innerHTML = '<div class="container"><p class="eyebrow reveal">Certifications</p><h2 class="reveal">Learning, verified.</h2><div class="card card--dashed reveal" style="margin-top:2.6rem;text-align:center;padding:3rem 2rem;"><h3>Certifications coming soon.</h3><p class="muted" style="margin-top:.8rem;">I\'m currently working toward certifications in software development, AI/ML and related areas. This section will be updated as I earn them.</p></div></div>';
     main.insertBefore(section, hackathons);
   }
 
-  /* ---------- Hive certificate preview + lightbox ---------- */
   function initHiveCertificate() {
     var hackathons = document.getElementById("hackathons");
     if (!hackathons || document.getElementById("hive-certificate-modal")) return;
-
     var cards = hackathons.querySelectorAll(".card");
     var card = null;
     cards.forEach(function (candidate) {
@@ -164,11 +120,7 @@
     preview.type = "button";
     preview.className = "hive-certificate-preview";
     preview.setAttribute("aria-label", "Open Hive certificate");
-    preview.innerHTML =
-      '<span class="hive-certificate-preview__label">Certificate of Achievement</span>' +
-      '<img src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay" loading="lazy">' +
-      '<span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
-
+    preview.innerHTML = '<span class="hive-certificate-preview__label">Certificate of Achievement</span><img src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay"><span class="hive-certificate-preview__hint">Click to view larger ↗</span>';
     card.classList.add("hive-card");
     card.appendChild(content);
     card.appendChild(preview);
@@ -179,7 +131,7 @@
       '.hive-card__content{min-width:0}' +
       '.hive-certificate-preview{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);border-radius:16px;padding:12px;cursor:zoom-in;text-align:center;transition:transform .2s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}' +
       '.hive-certificate-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.05)}' +
-      '.hive-certificate-preview img{display:block;width:100%;max-width:330px;height:auto;aspect-ratio:500/354;object-fit:cover;border-radius:9px}' +
+      '.hive-certificate-preview img{display:block;width:100%;max-width:330px;height:auto!important;aspect-ratio:auto!important;object-fit:contain;border-radius:9px;background:transparent}' +
       '.hive-certificate-preview__label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9ca3af)}' +
       '.hive-certificate-preview__hint{font-size:.78rem;color:var(--muted,#9ca3af)}' +
       '.hive-certificate-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(3,4,7,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}' +
@@ -197,89 +149,61 @@
     modal.setAttribute("role", "dialog");
     modal.setAttribute("aria-modal", "true");
     modal.setAttribute("aria-label", "Hive Certificate of Achievement");
-    modal.innerHTML =
-      '<button type="button" class="hive-certificate-modal__close" aria-label="Close certificate">×</button>' +
-      '<img class="hive-certificate-modal__image" src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay">';
+    modal.innerHTML = '<button type="button" class="hive-certificate-modal__close" aria-label="Close certificate">×</button><img class="hive-certificate-modal__image" src="assets/hive-certificate.jpg" alt="The Hive Certificate of Achievement awarded to Pilla Chinmay">';
     document.body.appendChild(modal);
-
     var closeButton = modal.querySelector(".hive-certificate-modal__close");
-    function openModal() {
-      modal.hidden = false;
-      document.body.style.overflow = "hidden";
-      closeButton.focus();
-    }
-    function closeModal() {
-      modal.hidden = true;
-      document.body.style.overflow = "";
-    }
-
+    function openModal() { modal.hidden = false; document.body.style.overflow = "hidden"; closeButton.focus(); }
+    function closeModal() { modal.hidden = true; document.body.style.overflow = ""; }
     preview.addEventListener("click", openModal);
     closeButton.addEventListener("click", closeModal);
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !modal.hidden) closeModal();
-    });
+    modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
   }
 
-  /* ---------- GitHub stats (client-side, graceful failure) ---------- */
   function initGitHub() {
     var link = document.getElementById("gh-link");
     var status = document.getElementById("gh-status");
     var stats = document.getElementById("gh-stats");
     if (!link || !status || !stats) return;
-
     var user = (link.getAttribute("data-username") || "").trim();
     if (!user || user === "YOUR_USERNAME") return;
-
     link.href = "https://github.com/" + user;
     status.textContent = "Loading public GitHub stats…";
-
-    fetch("https://api.github.com/users/" + encodeURIComponent(user))
-      .then(function (res) {
-        if (!res.ok) throw new Error("GitHub request failed");
-        return res.json();
-      })
-      .then(function (data) {
-        document.getElementById("gh-repos").textContent = data.public_repos;
-        document.getElementById("gh-followers").textContent = data.followers;
-        document.getElementById("gh-since").textContent = new Date(data.created_at).getFullYear();
-        stats.hidden = false;
-        status.hidden = true;
-      })
-      .catch(function () {
-        status.textContent = "GitHub stats are unavailable right now — the profile link still works.";
-      });
+    fetch("https://api.github.com/users/" + encodeURIComponent(user)).then(function (res) {
+      if (!res.ok) throw new Error("GitHub request failed");
+      return res.json();
+    }).then(function (data) {
+      document.getElementById("gh-repos").textContent = data.public_repos;
+      document.getElementById("gh-followers").textContent = data.followers;
+      document.getElementById("gh-since").textContent = new Date(data.created_at).getFullYear();
+      stats.hidden = false;
+      status.hidden = true;
+    }).catch(function () {
+      status.textContent = "GitHub stats are unavailable right now — the profile link still works.";
+    });
   }
 
-  /* ---------- Contact form (mailto, no backend) ---------- */
   function initForm() {
     var form = document.getElementById("contact-form");
     var error = document.getElementById("form-error");
     if (!form) return;
-
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var name = form.name.value.trim();
       var email = form.email.value.trim();
       var message = form.message.value.trim();
-
       if (!name || !email || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
         error.textContent = "Please fill in your name, a valid email and a message.";
         error.hidden = false;
         return;
       }
       error.hidden = true;
-
       var subject = encodeURIComponent("Portfolio contact — " + name);
       var body = encodeURIComponent(message + "\n\n— " + name + " (" + email + ")");
-      window.location.href =
-        "mailto:chinmaypilla001yt@gmail.com?subject=" + subject + "&body=" + body;
+      window.location.href = "mailto:chinmaypilla001yt@gmail.com?subject=" + subject + "&body=" + body;
     });
   }
 
-  /* ---------- Footer year ---------- */
   function initYear() {
     var el = document.getElementById("year");
     if (el) el.textContent = String(new Date().getFullYear());
