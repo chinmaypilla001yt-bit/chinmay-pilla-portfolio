@@ -43,11 +43,11 @@ Create the portfolio for:
 
 **Current stage:** 1st Year, 1st Semester
 
-**Primary programming language:** C++
+**Primary programming language:** Python
 
 **Current learning focus:**
 
-* C++
+* Python
 * Data Structures & Algorithms
 * Problem Solving
 * Artificial Intelligence
@@ -205,7 +205,7 @@ or another similarly natural, professional headline.
 
 Supporting text:
 
-> Computer Science Engineering student focused on C++, problem solving, AI/ML, and building practical software through projects and hackathons.
+> Computer Science Engineering student focused on Python, problem solving, AI/ML, and building practical software through projects and hackathons.
 
 Include two primary buttons:
 
@@ -227,13 +227,8 @@ Possible concept:
 
 A clean animated terminal/code panel containing something like:
 
-```cpp
-#include <iostream>
-
-int main() {
-    std::cout << "Hello, World!";
-    return 0;
-}
+```python
+print("Hello, World!")
 ```
 
 Animate the code subtly.
@@ -246,7 +241,7 @@ Create a minimal interactive developer dashboard showing:
 CHINMAY PILLA
 ────────────────────
 
-C++
+Python
 DSA
 AI / ML
 Data Science
@@ -266,7 +261,7 @@ Suggested direction:
 
 > I'm a first-year Computer Science Engineering student at NIAT × S-VYASA Deemed to Be University, specializing in AI/ML and Data Science.
 >
-> I'm currently building my foundations in C++, problem solving, and Data Structures & Algorithms while exploring AI, machine learning, and software development.
+> I'm currently building my foundations in Python, problem solving, and Data Structures & Algorithms while exploring AI, machine learning, and software development.
 >
 > I learn best by building. Hackathons and personal projects are where I experiment with ideas, work under constraints, and turn concepts into working products.
 >
@@ -281,7 +276,7 @@ First Year
 
 02
 Primary Language
-C++
+Python
 
 03
 Focus
@@ -304,7 +299,7 @@ Organize skills into categories.
 
 ### Programming
 
-* C++
+* Python
 * JavaScript
 * HTML
 * CSS
@@ -363,7 +358,7 @@ A short explanation of what the project does
 and why it was built.
 
 Tech:
-C++ • JavaScript • HTML • CSS
+Python • JavaScript • HTML • CSS
 
 [GitHub] [Live Demo]
 ```
@@ -421,7 +416,7 @@ Create a section called:
 
 Show my current learning roadmap.
 
-### 01 — C++
+### 01 — Python
 
 Strengthening programming fundamentals.
 
