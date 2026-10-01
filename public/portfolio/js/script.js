@@ -85,12 +85,7 @@
     if (!out) return;
 
     var code = [
-      "#include <iostream>",
-      "",
-      "int main() {",
-      '    std::cout << "Hello, World!";',
-      "    return 0;",
-      "}"
+      "print(\"Hello, World!\")"
     ].join("\n");
 
     if (reduceMotion) { out.textContent = code; return; }
