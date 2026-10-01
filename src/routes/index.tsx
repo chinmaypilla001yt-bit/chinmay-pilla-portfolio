@@ -10,13 +10,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "First-year CSE student (AI/ML & Data Science) at NIAT x S-VYASA. Learning C++, DSA and machine learning by building projects and joining hackathons.",
+          "First-year CSE student (AI/ML & Data Science) at NIAT x S-VYASA. Learning Python, DSA and machine learning by building projects and joining hackathons.",
       },
       { property: "og:title", content: "Chinmay Pilla | Computer Science Engineering Student" },
       {
         property: "og:description",
         content:
-          "Early-stage developer building foundations in C++, DSA, AI/ML and Data Science through projects and hackathons.",
+          "Early-stage developer building foundations in Python, DSA, AI/ML and Data Science through projects and hackathons.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
