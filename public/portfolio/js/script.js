@@ -85,7 +85,13 @@
     if (!out) return;
 
     var code = [
-      "print(\"Hello, World!\")"
+      'name = "Chinmay"',
+      'goal = "Become a strong software engineer"',
+      "",
+      'print(f"Hey, I\'m {name}!")',
+      "print(goal)",
+      'print("Learn. Build. Improve.")',
+      'print("Small progress every day.")'
     ].join("\n");
 
     if (reduceMotion) { out.textContent = code; return; }
